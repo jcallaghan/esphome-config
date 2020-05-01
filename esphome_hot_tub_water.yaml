@@ -44,6 +44,25 @@ sensor:
     name: "esph_${system_name}_uptime"
     update_interval: 60s
 
+  # https://github.com/jcallaghan/esphome-config/issues/1
   - platform: dallas
     address: 0x770316457608FF28
     name: "${system_name}_temperature"
+
+  # https://github.com/jcallaghan/esphome-config/issues/4
+  - platform: adc
+    pin: GPIO34
+    name: "${system_name}_tds"
+    update_interval: 10s
+    unit_of_measurement: "ppm"
+    icon: "mdi:water-percent"
+    filters:
+      - lambda: return (133.42*x*x*x - 255.86*x*x + 857.39*x)*0.5;
+
+  # https://github.com/jcallaghan/esphome-config/issues/4
+  - platform: adc
+    pin: GPIO34
+    name: "${system_name}_tds_volts"
+    update_interval: 10s
+    unit_of_measurement: "v"
+    icon: "mdi:water-percent"
