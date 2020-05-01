@@ -26,6 +26,9 @@ api:
 ota:
   password: !secret ota_password
 
+dallas:
+  - pin: GPIO21
+  
 text_sensor:
 
   - platform: version
@@ -40,3 +43,7 @@ sensor:
   - platform: uptime
     name: "esph_${system_name}_uptime"
     update_interval: 60s
+
+  - platform: dallas
+    address: 0x770316457608FF28
+    name: "${system_name}_temperature"
