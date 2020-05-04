@@ -1,0 +1,69 @@
+substitutions:
+  system_name: weather_station_air
+  friendly_name: Esph Weath Station Air
+
+esphome:
+  name: "esph_${system_name}"
+  platform: ESP32
+  board: pico32
+
+wifi:
+  ssid: !secret wifi_vlan1_ssid
+  password: !secret wifi_vlan1_password
+  fast_connect: true
+  ap:
+    ssid: "${friendly_name} AP"
+    password: !secret fallback_ssid_password
+
+captive_portal:
+
+logger:
+  level: VERY_VERBOSE
+
+api:
+  password: !secret api_password
+
+ota:
+  password: !secret ota_password
+
+web_server:
+  port: 80
+  
+text_sensor:
+
+  - platform: version
+    name: "esph_${system_name}_version"
+    
+i2c:
+
+  - id: i2c_1
+    sda: 21
+    scl: 22
+    scan: True
+    
+  - id: i2c_2
+    sda: 33
+    scl: 32
+    scan: True
+    
+sensor:
+
+  - platform: wifi_signal
+    name: "esph_${system_name}_wifi_signal"
+    update_interval: 30s
+
+  - platform: uptime
+    name: "esph_${system_name}_uptime"
+    update_interval: 60s
+
+  - platform: sgp30
+    i2c_id: i2c_2
+    eco2:
+      name: "${system_name}_eCO2"
+      accuracy_decimals: 1
+    tvoc:
+      name: "${system_name}_TVOC"
+      accuracy_decimals: 1
+    address: 0x58
+    update_interval: 5s
+    baseline: 0xF8F8
