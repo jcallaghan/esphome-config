@@ -58,26 +58,31 @@ sensor:
 
   - platform: sgp30
     i2c_id: i2c_2
+    address: 0x58
     eco2:
       name: "esph_${system_name}_eCO2"
       accuracy_decimals: 1
     tvoc:
       name: "esph_${system_name}_TVOC"
       accuracy_decimals: 1
-    address: 0x58
-    update_interval: 5s
+    compensation:
+      temperature_source: temperature
+      humidity_source: humidity
+    update_interval: 30s
     baseline: 0xF8F8
-
+      
   - platform: bme680
     i2c_id: i2c_2  
+    address: 0x77
     temperature:
       name: "esph_${system_name}_temperature"
+      id: temperature
       oversampling: 16x
     pressure:
       name: "esph_${system_name}_pressure"
     humidity:
       name: "esph_${system_name}_humidity"
+      id: humidity
     gas_resistance:
       name: "esph_${system_name}_gas_resistance"
-    address: 0x77
-    update_interval: 5s
+    update_interval: 30s
