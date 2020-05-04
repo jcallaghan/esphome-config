@@ -68,8 +68,8 @@ sensor:
     compensation:
       temperature_source: temperature
       humidity_source: humidity
-    update_interval: 30s
-    baseline: 0xF8F8
+    update_interval: 15s
+    #baseline: 0xF8F8
       
   - platform: bme680
     i2c_id: i2c_2  
@@ -86,3 +86,9 @@ sensor:
     gas_resistance:
       name: "esph_${system_name}_gas_resistance"
     update_interval: 30s
+    
+  - platform: bh1750
+    i2c_id: i2c_2    
+    name: "esph_${system_name}_lux"
+    address: 0x23
+    update_interval: 15s
