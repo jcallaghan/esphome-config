@@ -92,3 +92,15 @@ sensor:
     name: "esph_${system_name}_lux"
     address: 0x23
     update_interval: 15s
+
+  - platform: adc
+    pin: GPIO35
+    name: "esph_${system_name}_uv"
+    update_interval: 15s
+    unit_of_measurement: "UV Index"  
+    filters:
+      - lambda: return (x/0.1);
+      # update sensor every 10 seconds and report a 2 minute average
+      - sliding_window_moving_average:
+          window_size: 12
+          send_every: 12      
