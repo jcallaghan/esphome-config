@@ -1,0 +1,70 @@
+substitutions:
+  system_name: weather_station_camera
+  friendly_name: Esph Weather Station Camera
+
+esphome:
+  name: "esph_${system_name}"
+  platform: ESP32
+  board: esp32dev
+
+wifi:
+  ssid: !secret wifi_vlan1_ssid
+  password: !secret wifi_vlan1_password
+  fast_connect: true
+  ap:
+    ssid: "${friendly_name} AP"
+    password: !secret fallback_ssid_password
+
+captive_portal:
+
+logger:
+  level: DEBUG 
+
+api:
+  password: !secret api_password
+
+ota:
+  password: !secret ota_password
+
+web_server:
+  port: 80
+
+esp32_camera:
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+  name: esph_${system_name}_camera
+  resolution: 800x600
+  jpeg_quality: 10
+  max_framerate: 60fps
+  contrast: -1
+  brightness: 0
+  saturation: 0
+  
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: gpio_4
+
+text_sensor:
+
+  - platform: version
+    name: "esph_${system_name}_version"
+
+sensor:
+
+  - platform: wifi_signal
+    name: "esph_${system_name}_wifi_signal"
+    update_interval: 30s
+
+  - platform: uptime
+    name: "esph_${system_name}_uptime"
+    update_interval: 60s
