@@ -1,0 +1,64 @@
+substitutions:
+  system_name: kitchen_oven
+  friendly_name: Esph Oven
+
+esphome:
+  name: "esph_${system_name}"
+  platform: ESP32
+  board: pico32
+        
+wifi:
+  ssid: !secret wifi_vlan1_ssid
+  password: !secret wifi_vlan1_password
+  fast_connect: true
+  ap:
+    ssid: "${friendly_name} AP"
+    password: !secret fallback_ssid_password
+
+captive_portal:
+
+logger:
+  level: DEBUG
+
+api:
+  password: !secret api_password
+
+#web_server:
+#  port: 80
+  
+ota:
+  password: !secret ota_password
+
+spi:
+  miso_pin: GPIO12
+  clk_pin: GPIO14
+
+text_sensor:
+
+  - platform: version
+    name: "esph_${system_name}_version"
+
+binary_sensor:
+
+  - platform: status
+    name: "esph_${system_name}_status"
+    
+sensor:
+
+  - platform: wifi_signal
+    name: "esph_${system_name}_wifi_signal"
+    update_interval: 30s
+
+  - platform: uptime
+    name: "esph_${system_name}_uptime"
+    update_interval: 60s
+
+  - platform: max31855
+    name: "esph_${system_name}_ambient_temperature"
+    cs_pin: GPIO27
+    update_interval: 5s
+
+switch:
+
+  - platform: restart
+    name: "esph_${system_name}_restart"
