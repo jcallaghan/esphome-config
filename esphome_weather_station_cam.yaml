@@ -1,5 +1,5 @@
 substitutions:
-  system_name: weather_station_camera
+  system_name: weather_station_cam
   friendly_name: Esph Weather Station Camera
 
 esphome:
@@ -18,7 +18,7 @@ wifi:
 captive_portal:
 
 logger:
-  level: DEBUG 
+  level: DEBUG
 
 api:
   password: !secret api_password
@@ -42,13 +42,13 @@ esp32_camera:
   pixel_clock_pin: GPIO22
   power_down_pin: GPIO32
   name: esph_${system_name}_camera
-  resolution: 800x600
+  resolution: 1024x768 
   jpeg_quality: 10
-  max_framerate: 60fps
-  contrast: -1
+  max_framerate: 30fps
+  contrast: 0
   brightness: 0
   saturation: 0
-  
+
 output:
   - platform: gpio
     pin: GPIO4
@@ -68,3 +68,8 @@ sensor:
   - platform: uptime
     name: "esph_${system_name}_uptime"
     update_interval: 60s
+
+switch:
+
+  - platform: restart
+    name: "esph_${system_name}_restart"
