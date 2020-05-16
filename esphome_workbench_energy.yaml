@@ -1,0 +1,88 @@
+substitutions:
+  system_name: workbench_energy
+  friendly_name: Esph Workbench Energy
+
+esphome:
+  name: "esph_${system_name}"
+  platform: ESP8266
+  board: esp01_1m
+
+  on_boot:
+    then:
+      - switch.turn_on: relay
+
+wifi:
+  ssid: !secret wifi_vlan1_ssid
+  password: !secret wifi_vlan1_password
+  fast_connect: true
+  
+  ap:
+    ssid: "${friendly_name} AP"
+    password: !secret fallback_ssid_password
+
+captive_portal:
+
+#debug:
+
+logger:
+  level: DEBUG
+
+api:
+  password: !secret api_password
+
+ota:
+  password: !secret ota_password
+
+# web_server:
+#   port: 80
+
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
+text_sensor:
+
+  - platform: version
+    name: "esph_${system_name}_version"
+
+sensor:
+
+  - platform: wifi_signal
+    name: "esph_${system_name}_wifi_signal"
+    update_interval: 30s
+
+  - platform: uptime
+    name: "esph_${system_name}_uptime"
+    update_interval: 60s
+
+  - platform: cse7766
+    current:
+      name: "esph_${system_name}_current"
+    voltage:
+      name: "esph_${system_name}_voltage"
+    power:
+      name: "esph_${system_name}_power"
+
+switch:
+
+  - platform: gpio
+    name: "esph_${system_name}_relay"
+    pin: GPIO12
+    id: relay
+
+  - platform: restart
+    name: "esph_${system_name}_restart"
+
+  - platform: shutdown
+    name: "esph_${system_name}_shutdown"
+
+# output:
+#   - platform: esp8266_pwm
+#     id: blue_led
+#     pin: GPIO13
+#     inverted: True
+
+# light:
+#   - platform: monochromatic
+#     name: "esph_${system_name}_led"
+#     output: blue_led
