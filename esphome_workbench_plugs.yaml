@@ -1,0 +1,99 @@
+substitutions:
+  system_name: workbench_plugs
+  friendly_name: Esph Solder Energy
+
+esphome:
+  name: "esph_${system_name}"
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_vlan1_ssid
+  password: !secret wifi_vlan1_password
+  fast_connect: true
+  ap:
+    ssid: "${friendly_name} AP"
+    password: !secret fallback_ssid_password
+
+captive_portal:
+
+#debug:
+
+logger:
+  level: DEBUG
+
+api:
+  password: !secret api_password
+
+ota:
+  password: !secret ota_password
+
+
+text_sensor:
+
+  - platform: version
+    name: "esph_${system_name}_version"
+
+binary_sensor:
+
+  - platform: gpio
+    pin:
+      number: GPIO10
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "esph_${system_name}_button0"
+    
+    #toggle both relays on push
+    on_press:
+      - switch.toggle: relay1
+      - switch.toggle: relay2
+
+  - platform: gpio
+    pin:
+      number: GPIO00
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "esph_${system_name}_button1"
+    
+    #toggle only relay1
+    on_press:
+      - switch.toggle: relay1
+
+  - platform: gpio
+    pin:
+      number: GPIO09
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "esph_${system_name}_button2"
+    
+    #toggle only relay2
+    on_press:
+      - switch.toggle: relay2
+
+sensor:
+
+  - platform: wifi_signal
+    name: "esph_${system_name}_wifi_signal"
+    update_interval: 30s
+
+  - platform: uptime
+    name: "esph_${system_name}_uptime"
+    update_interval: 60s
+
+switch:
+
+  - platform: restart
+    name: "esph_${system_name}_restart"
+
+  - platform: shutdown
+    name: "esph_${system_name}_shutdown"
+    
+  - platform: gpio
+    name: "esph_${system_name}_relay1"
+    pin: GPIO12
+    id: relay1
+
+  - platform: gpio
+    name: "esph_${system_name}_relay2"
+    pin: GPIO05
+    id: relay2
