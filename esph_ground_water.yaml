@@ -1,0 +1,29 @@
+substitutions:
+  system_name: ground_water
+  friendly_name: Ground Water
+  device_description: "Ultrasonic distance sensor fitted inside a tube with a table tennis ball measuring the depth of the water in our basement."
+
+esphome:
+  name: "esph_${system_name}"
+  comment: ${device_description}
+  platform: ESP32
+  board: pico32
+
+<<: !include .common/common.yaml
+
+sensor:      
+      
+  - platform: ultrasonic
+    id: height_value
+    name: "ESPH ${friendly_name} Distance"   
+    trigger_pin: GPIO2 # Green
+    echo_pin: GPIO4 # Orange
+    update_interval: 20s
+    accuracy_decimals: 2
+    timeout: 3m
+    pulse_time: 30us
+    filters:
+      - sliding_window_moving_average:
+          window_size: 3
+          send_every: 3
+          send_first_at: 1
