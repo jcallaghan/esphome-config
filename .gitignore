@@ -1,0 +1,27 @@
+# Gitignore settings for ESPHome
+/.esphome/
+**/.pioenvs/
+**/.piolibdeps/
+**/lib/
+**/src/
+**/platformio.ini
+/secrets.yaml
+/.assets/*
+/.fonts/*
+*.md
+*.txt
+*.url
+workspace.code-workspace
+/esph_*/*
+
+
+esph_living_room_ring.yaml
+esph_test_m5_nano.yaml
+esph_kitchen_sink_cupboard.yaml
+esph_kitchen_kettle.yaml
+esph_kitchen_hob.yaml
+esph_hot_tub_energy.yaml
+esph_ground_water.yaml
+esph_bbq_and_pizza_oven.yaml
+.common/m5_stack_components.yaml
+.common/m5_stickc_components.yaml

@@ -1,0 +1,28 @@
+substitutions:
+  system_name: bedroom
+  friendly_name: Bedroom
+  device_description: "Pressure pad sensors placed under matress to detect occupancy and presence in bed."
+
+esphome:
+  name: "esph_${system_name}"
+  comment: ${device_description}
+  platform: ESP32
+  board: pico32
+
+<<: !include .common/common.yaml
+
+binary_sensor:
+
+  - platform: gpio
+    pin: 
+      number: GPIO4
+      mode: INPUT_PULLUP
+      inverted: True      
+    name: "ESPH ${friendly_name} Bed Left Occupied"
+
+  - platform: gpio
+    pin:
+      number: GPIO16
+      mode: INPUT_PULLUP 
+      inverted: True      
+    name: "ESPH ${friendly_name} Bed Right Occupied"

@@ -1,0 +1,17 @@
+substitutions:
+  system_name: generic_esp32
+  friendly_name: Generic ESP32
+  device_description: "Template configuration for a generic ESP32."
+
+esphome:
+  name: "esph_${system_name}"
+  comment: ${device_description}
+  platform: ESP32
+  board: pico32
+
+<<: !include .common/common.yaml
+
+packages:
+
+  color: !include .common/color.yaml
+  font: !include .common/font.yaml

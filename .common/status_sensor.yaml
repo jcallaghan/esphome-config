@@ -1,0 +1,7 @@
+  # https://esphome.io/components/binary_sensor/index.html
+  binary_sensor:
+
+    # https://esphome.io/components/binary_sensor/status.html
+    - platform: status
+      name: "ESPH ${friendly_name} Status"
+      id: homeassistant_status
