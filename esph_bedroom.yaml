@@ -26,3 +26,19 @@ binary_sensor:
       mode: INPUT_PULLUP 
       inverted: True      
     name: "ESPH ${friendly_name} Bed Right Occupied"
+
+# //TODO #22 consider moving template sensor from Home Assistant into this config including the delay_off.
+
+# Reference Home Assistant template
+
+# platform: template
+# sensors:
+
+#   occupied_bedroom_bed:
+#     friendly_name: Bed Occupied
+#     value_template: >-
+#       {{  is_state('binary_sensor.bedroom_bed_left_occupied','on')
+#           or is_state('binary_sensor.bedroom_bed_right_occupied','on') }}
+#     # delay_on:
+#     delay_off: 00:01:00
+#     device_class: occupancy
