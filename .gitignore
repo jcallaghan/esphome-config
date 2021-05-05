@@ -3,7 +3,7 @@
 /.esphome/
 /.assets/*
 /.fonts/*
-/esph_*/
+/esph_*/*
 /secrets.yaml
 
 *.md
