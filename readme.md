@@ -1,7 +1,7 @@
 # ESPHome Configs
 This is a repo of all my ESPHome configurations with details about some of my ESPHome related projects. 
 
-In the [Wiki](/wiki) you will find links to useful resources and examples of code and config I have found helpful.
+In the [Wiki](https://github.com/jcallaghan/esphome-config/wiki) you will find links to useful resources and examples of code and config I have found helpful.
 
 ## Devices
 

@@ -1,7 +1,7 @@
 substitutions:
   system_name: bedroom
   friendly_name: Bedroom
-  device_description: "Pressure pad sensors placed under matress to detect occupancy and presence in bed."
+  device_description: "Pressure pad sensors placed under matress to detect occupancy and presence in bed. Readme via https://github.com/jcallaghan/esphome-config/.readme/esph_bedroom.md."
 
 esphome:
   name: "esph_${system_name}"

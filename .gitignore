@@ -6,7 +6,6 @@
 /esph_*/
 /secrets.yaml
 
-*.md
 *.txt
 *.url
 workspace.code-workspace
@@ -25,3 +24,4 @@ esph_kitchen_hob.yaml
 esph_bbq_and_pizza_oven.yaml
 .common/m5_stack_components.yaml
 .common/m5_stickc_components.yaml
+esph_ground_water.yaml

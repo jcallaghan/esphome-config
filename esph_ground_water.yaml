@@ -18,12 +18,14 @@ sensor:
     name: "ESPH ${friendly_name} Distance"   
     trigger_pin: GPIO2 # Green
     echo_pin: GPIO4 # Orange
-    update_interval: 20s
+    update_interval: 30s
     accuracy_decimals: 2
-    timeout: 3m
-    pulse_time: 30us
+    #timeout: 2m
+    #pulse_time: 30us
     filters:
       - sliding_window_moving_average:
-          window_size: 3
-          send_every: 3
-          send_first_at: 1
+          window_size: 30
+          send_every: 10
+          send_first_at: 10
+
+# https://www.esphome.io/components/sensor/vl53l0x.html          
