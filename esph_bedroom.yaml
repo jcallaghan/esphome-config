@@ -33,3 +33,23 @@ binary_sensor:
     name: "ESPH ${friendly_name} Bed Right Occupied"
     id: bed_right
     device_class: occupancy
+
+  # Template combining left and right states.
+  # https://esphome.io/components/binary_sensor/template.html
+  - platform: template
+    name: "ESPH ${friendly_name} Bed Occupied"
+    device_class: occupancy
+    lambda: |-
+      if (id(bed_left).state || id(bed_right).state) {
+        // Bed occupied.
+        return true;
+      } else {
+        // Bed not occupied.
+        return false;
+      }
+    # Debounce state.
+    # https://esphome.io/components/binary_sensor/index.html#binary-sensor-filters
+    filters:
+      - delayed_off: 60s
+
+# //TODO #22 consider moving template sensor from Home Assistant into this config including the delay_off.
