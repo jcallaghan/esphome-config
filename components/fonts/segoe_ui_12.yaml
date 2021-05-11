@@ -1,0 +1,7 @@
+---
+# https://esphome.io/components/display/index.html#drawing-static-text
+font:
+  - file: "/config/assets/fonts/segoeui.ttf"
+    id: font_segoeui_12
+    size: 12
+    glyphs: '▲▼<>\/!"%()+,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'

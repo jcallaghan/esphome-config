@@ -1,18 +1,18 @@
+---
+#
+# https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_ground_water.md
+#
 substitutions:
   system_name: ground_water
   friendly_name: Ground Water
-  device_description: "Ultrasonic distance sensor fitted inside a tube with a table tennis ball measuring the depth of the water in our basement."
+  device_description: "Ultrasonic distance sensor fitted inside a tube with a table tennis ball measuring the depth of the water in our basement. /n Readme via https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_ground_water.md"
 
-esphome:
-  name: "esph_${system_name}"
-  comment: ${device_description}
-  platform: ESP32
-  board: pico32
-
-<<: !include .common/common.yaml
+packages:
+  device: !include devices/esp32_pico.yaml
 
 sensor:      
       
+  # https://www.esphome.io/components/sensor/ultrasonic.html
   - platform: ultrasonic
     id: height_value
     name: "ESPH ${friendly_name} Distance"   
@@ -28,4 +28,4 @@ sensor:
           send_every: 10
           send_first_at: 10
 
-# https://www.esphome.io/components/sensor/vl53l0x.html          
+  # https://www.esphome.io/components/sensor/vl53l0x.html          

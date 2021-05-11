@@ -1,0 +1,102 @@
+---
+#
+substitutions:
+  system_name: area_kitchen
+  friendly_name: Kitchen
+  device_description: "Used for area specific sensors and to obtain data from local Xiaomi temperature sensors via BLE."
+#IR receiver to enable a IR button built into my hob/stove to function. The button should operate an extractor fan above however ours is not compatiable.
+
+packages:
+  device: !include devices/esp32_pico.yaml
+
+esp32_ble_tracker:
+
+#esp32_ble_beacon:
+
+binary_sensor:
+
+  - platform: remote_receiver
+    name: "ESPH ${friendly_name} Off Command"
+    raw:
+      code: [-646, 1467, -690, 733, -706, 747, -674, 2236, -674, 751, -677, 1489, -650, 1518, -651, 770, -643]
+    filters:
+      - delayed_off: 5s
+      
+  - platform: remote_receiver
+    name: "ESPH ${friendly_name} Light Command"
+    raw:
+      code: [-669, 1466, -691, 733, -1375, 760, -676, 1466, -701, 749, -1346, 2986, -675, 726, -698, 719, -1381]
+    filters:
+      - delayed_off: 5s
+
+  - platform: remote_receiver
+    name: "ESPH ${friendly_name} Fan 1 Command"
+    raw:
+      code: [-1321, 1496, -673, 1463, -2063, 1503, -676, 1489, -649, 752, -674, 1517, -676, 2231, -650]
+    filters:
+      - delayed_off: 5s
+
+  - platform: remote_receiver
+    name: "ESPH ${friendly_name} Fan 2 Command"
+    raw:
+      code: [-1319, 1469, -728, 2948, -650, 2258, -3402, 2213, -2060]
+    filters:
+      - delayed_off: 5s
+
+  - platform: remote_receiver
+    name: "ESPH ${friendly_name} Fan 3 Command"
+    raw:
+      code: [-623, 2224, -2744, 2954, -2060, 730, -707, 2229, -2034]
+    filters:
+      - delayed_off: 5s
+
+sensor:
+
+  # https://esphome.io/components/sensor/xiaomi_ble.html?highlight=xiaomi_lywsd02#lywsd03mmc
+  - platform: xiaomi_lywsd03mmc
+    mac_address: "A4:C1:38:99:70:FA"
+    bindkey: "49bad3d678d0bd5eb93c7a61df594af2"
+    temperature:
+      name: "ESPH ${friendly_name} Fridge Temperature"
+    humidity:
+      name: "ESPH ${friendly_name} Fridge Humidity"
+    battery_level:
+      name: "ESPH ${friendly_name} Fridge Battery Level"
+
+  # https://esphome.io/components/sensor/xiaomi_ble.html?highlight=xiaomi_lywsd02#lywsd03mmc
+  - platform: xiaomi_lywsd03mmc
+    mac_address: "A4:C1:38:79:93:C8"
+    bindkey: "8b30ad63b36e7d8acd5d37bc74acf453"
+    temperature:
+      name: "ESPH ${friendly_name} Kitchen Portable Temperature"
+    humidity:
+      name: "ESPH ${friendly_name} Kitchen Portable Humidity"
+    battery_level:
+      name: "ESPH ${friendly_name} Kitchen Portable Battery Level"
+
+  # https://esphome.io/components/sensor/xiaomi_ble.html?highlight=xiaomi_lywsd02#lywsd03mmc
+  - platform: xiaomi_lywsd03mmc
+    mac_address: "A4:C1:38:87:E9:80"
+    bindkey: "dabdd3e196f9e49cdf6795621448415e"
+    temperature:
+      name: "ESPH ${friendly_name} Wine Fridge Top Temperature"
+    humidity:
+      name: "ESPH ${friendly_name} Wine Fridge Top Humidity"
+    battery_level:
+      name: "ESPH ${friendly_name} Wine Fridge Top Battery Level"
+
+# https://esphome.io/components/remote_receiver.html
+remote_receiver:
+
+  - id: external_ir_receiver 
+    pin:
+      number: GPIO13
+      inverted: true
+    dump: raw 
+
+# # https://esphome.io/components/remote_transmitter.html
+# remote_transmitter:
+
+#   - id: external_ir_transmitter
+#     pin: GPIO12
+#     carrier_duty_percent: 50%

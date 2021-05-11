@@ -1,0 +1,9 @@
+---
+# Device: Generic ESP32 DevKit board
+#
+packages:
+  <<: !include_dir_named ../components/common
+  board: !include ../boards/esp32_pico.yaml
+
+# [ ] LED
+# [ ] SPI + I2C

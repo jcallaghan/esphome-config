@@ -1,28 +1,21 @@
 .gitignore
 
 /.esphome/
-/.assets/*
-/.fonts/*
-/esph_*/
-/secrets.yaml
+/assets/fonts/*.ttf
+/assets/*.png
 
+/secrets.yaml
 *.txt
 *.url
-workspace.code-workspace
+~*
+.*
+
+*.code-workspace
+
+/esph_*/
 
 **/.pioenvs/
 **/.piolibdeps/
 **/lib/
 **/src/
 **/platformio.ini
-
-esph_living_room_ring.yaml
-esph_test_m5_nano.yaml
-esph_kitchen_sink_cupboard.yaml
-esph_kitchen_kettle.yaml
-esph_kitchen_hob.yaml
-esph_bbq_and_pizza_oven.yaml
-.common/m5_stack_components.yaml
-.common/m5_stickc_components.yaml
-esph_ground_water.yaml
-.readme/esph_ground_water.md

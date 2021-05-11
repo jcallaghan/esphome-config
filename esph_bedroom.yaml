@@ -1,44 +1,35 @@
+---
+#
+# https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_bedroom.md
+#
 substitutions:
   system_name: bedroom
   friendly_name: Bedroom
-  device_description: "Pressure pad sensors placed under matress to detect occupancy and presence in bed. Readme via https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_bedroom.md"
+  device_description: "Pressure pad sensors placed under mattress to detect occupancy and presence in bed. Readme via https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_bedroom.md"
 
-esphome:
-  name: "esph_${system_name}"
-  comment: ${device_description}
-  platform: ESP32
-  board: pico32
-
-<<: !include .common/common.yaml
+packages:
+  device: !include devices/esp32_pico.yaml
 
 binary_sensor:
 
+  # Left pressure pad.
+  # https://esphome.io/components/binary_sensor/gpio.html
   - platform: gpio
     pin: 
       number: GPIO4
       mode: INPUT_PULLUP
       inverted: True      
     name: "ESPH ${friendly_name} Bed Left Occupied"
+    id: bed_left
+    device_class: occupancy
 
+  # Right pressure pad.
+  # https://esphome.io/components/binary_sensor/gpio.html
   - platform: gpio
     pin:
       number: GPIO16
       mode: INPUT_PULLUP 
       inverted: True      
     name: "ESPH ${friendly_name} Bed Right Occupied"
-
-# //TODO #22 consider moving template sensor from Home Assistant into this config including the delay_off.
-
-# Reference Home Assistant template
-
-# platform: template
-# sensors:
-
-#   occupied_bedroom_bed:
-#     friendly_name: Bed Occupied
-#     value_template: >-
-#       {{  is_state('binary_sensor.bedroom_bed_left_occupied','on')
-#           or is_state('binary_sensor.bedroom_bed_right_occupied','on') }}
-#     # delay_on:
-#     delay_off: 00:01:00
-#     device_class: occupancy
+    id: bed_right
+    device_class: occupancy

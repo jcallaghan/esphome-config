@@ -1,0 +1,17 @@
+---
+# WiFi Info Text Sensor
+#
+# The wifi_info text sensor platform exposes different WiFi information via
+# text sensors.
+#
+# https://esphome.io/components/text_sensor/wifi_info.html
+#
+platform: wifi_info
+ip_address:
+  name: "ESPH ${friendly_name} IP Address"
+ssid:
+  name: "ESPH ${friendly_name} Connected SSID"
+bssid:
+  name: "ESPH ${friendly_name} Connected BSSID"        
+mac_address:
+  name: "ESPH ${friendly_name} Connected MAC"

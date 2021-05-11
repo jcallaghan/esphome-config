@@ -1,9 +1,0 @@
-  # https://esphome.io/components/sensor/index.html
-  sensor:
-
-    # https://esphome.io/components/sensor/uptime.html  
-    - platform: uptime
-      name: "ESPH ${friendly_name} Uptime"
-      unit_of_measurement: minutes
-      filters:
-        - lambda: return x / 60.0;

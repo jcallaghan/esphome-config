@@ -1,5 +1,0 @@
-  # https://esphome.io/components/time.html
-  time:
-    - platform: homeassistant
-      timezone: Europe/London
-      id: homeassistant_time

@@ -1,0 +1,108 @@
+---
+# Device: M5 Stick C
+#
+# This is my ESPHome device template for the M5 Stick C.
+# ESP32 PICO (4M)
+# [x] Buttons (GPIO37 GPOI39)
+# [x] IR transmitter (GPIO9)
+# [x] Red LED (GPIO10)
+# [ ] Display ST7735S ()
+# [ ] Microphone SPM1423 (SDA GPIO34, SCL GPIO0)
+# [ ] 6-Axis posture sensor SH200Q/MPU6886 (SCL GPIO22, SDA GPIO21)
+# [ ] Power Management AXP192 (SCL GPIO22 SDA GPIO21)
+# [ ] RTC BM8563
+# [ ] HY2-0-4P - (GPIO32, GPIO33)
+# Built-in Lipo Battery
+#
+# https://docs.m5stack.com/en/core/m5stickc
+# https://github.com/m5stack/M5StickC
+#
+packages:
+  <<: !include_dir_named ../components/common
+  board: !include ../boards/m5_stick_c.yaml
+  i2c: ../components/core/i2c_esp32.yaml
+  # grove: ../components/core/i2c_m5_grove.yaml
+  # <<: !include_dir_named ../components/fonts
+  # <<: !include_dir_named ../components/colors
+ 
+# i2c:
+#   sda: GPIO32
+#   scl: GPIO33
+#   scan: true
+#   frequency: 200kHz
+
+spi:
+  clk_pin: GPIO13
+  mosi_pin: GPIO15
+
+# uart:
+#   rx_pin: GPIO16
+#   baud_rate: 9600
+
+light:
+
+  - platform: monochromatic
+    output:  builtin_led
+    name: "ESPH ${friendly_name} LED"
+    id: led1
+
+output:
+
+  - platform: ledc
+    pin: GPIO10
+    inverted: true
+    id: builtin_led
+  
+# https://esphome.io/components/remote_transmitter.html
+remote_transmitter:
+
+  - id: internal_ir
+    pin: GPIO9
+    carrier_duty_percent: 50%
+
+binary_sensor:
+
+  - platform: gpio
+    pin:
+      number: GPIO39
+      inverted: true
+    name: "ESPH ${friendly_name} Button 1" # Side button
+    id: m5_button_1  
+
+  - platform: gpio
+    pin:
+      number: GPIO37
+      inverted: true
+      mode: INPUT_PULLUP
+    name: "ESPH ${friendly_name} Button 2" # Front button with M5 embossed on it.
+    id: m5_button_2    
+
+# //TODO #23 Get M5 Sick C display to work.
+
+# sensor:
+
+#   - platform: axp192
+#     address: 0x34
+#     i2c_id: bus_a
+#     update_interval: 30s
+#     battery_level:
+#       name: "ESPH ${friendly_name} Battery Level"
+#       id: "m5_battery_level"
+#     #brightness: 0.3
+
+# display:
+
+#   # https://esphome.io/components/display/st7735.html
+#   - platform: st7735
+#     model: "INITR_BLACKTAB"
+#     cs_pin: GPIO5
+#     dc_pin: GPIO23
+#     reset_pin: GPIO18
+#     rotation: 270
+#     device_width: 80
+#     device_height: 160
+#     col_start: 0
+#     row_start: 0   
+#     lambda: |-
+#       it.rectangle(1, 78, 158, 78);
+#       it.print(0, 0, id(font_segoeui_12), id(color_yellow), TextAlign::TOP_CENTER, "M5 Stick C Test");

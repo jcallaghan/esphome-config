@@ -1,0 +1,10 @@
+---
+# Restart switch
+#
+# A simple switch to restart the ESP device.
+#
+# https://esphome.io/components/switch/restart.html#22
+#
+platform: restart
+id: switch_restart
+name: "ESPH ${friendly_name} Restart"    

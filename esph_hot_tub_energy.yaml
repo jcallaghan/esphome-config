@@ -1,55 +1,15 @@
+---
+#
 substitutions:
-  system_name: esph_hot_tub_energy
+  system_name: hot_tub_energy
   friendly_name: Hot Tub Energy
   device_description: "Sonoff POWR2 powering my hot tub and used to monitor energy."
 
-esphome:
-  name: "esph_${system_name}"
-  comment: ${device_description}
-  platform: ESP8266
-  board: esp01_1m
+packages:
+  device: !include devices/sonoff_pow_r2.yaml
 
+esphome:
   on_boot:
     priority: -10  
     then:
-      - switch.turn_on: relay
-
-<<: !include .common/common.yaml
-
-# logger:
-#   level: DEBUG
-#   baud_rate: 0
-  
-uart:
-  rx_pin: RX
-  baud_rate: 4800
-
-sensor:
-
-  - platform: cse7766
-    current:
-      name: "ESPH ${friendly_name} Current"
-    voltage:
-      name: "ESPH ${friendly_name} Voltage"
-    power:
-      name: "ESPH ${friendly_name} Power"
-
-switch:
- 
-  - platform: gpio
-    name: "ESPH ${friendly_name}"
-    pin: GPIO12
-    id: relay
-    
-output:
-
-  - platform: esp8266_pwm
-    id: blue_led
-    pin: GPIO13
-    inverted: True
-
-light:
-
-  - platform: monochromatic
-    name: "ESPH ${friendly_name} LED"
-    output: blue_led
+      - switch.turn_on: device_relay

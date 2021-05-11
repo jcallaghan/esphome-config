@@ -1,0 +1,9 @@
+---
+#
+substitutions:
+  system_name: test_m5_stick
+  friendly_name: Test M5 Stick C
+  device_description: ""
+
+packages:
+  device: !include devices/m5_stick_c.yaml

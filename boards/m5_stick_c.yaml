@@ -1,0 +1,21 @@
+---
+# M5 Stick C
+#
+# M5Stick-C is a M5 Mini-CORE based on ESP32 chip, including WiFi and Bluetooth, 0.96Inch color LCD Display (Resolution: 80×160), 
+# LED, Button, Buzzer, IR Transmitter, 80mAh-Battery, and Six-Axis Motion Processing Unit (SH200Q). 
+# User can easy to program it through UIFlow, Arduino or MicroPython and create lightweight IoT or wearable devices.
+#
+# https://docs.m5stack.com/en/core/m5stickc
+#
+esphome:
+  <<: !include .esphome.yaml
+  platform: ESP32
+  board: m5stick-c
+
+  # See issue #23 - trying to get screen to work.
+  # includes:
+  # - custom_components/st7735/st7735.h
+  # - custom_components/axp192/axp192.h
+
+  # platformio_options:
+  #   upload_speed: 115200  

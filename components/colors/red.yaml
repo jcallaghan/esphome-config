@@ -1,0 +1,7 @@
+---
+# https://esphome.io/components/display/index.html#color
+color:
+  - id: color_red
+    red: 100%
+    green: 0%
+    blue: 0%

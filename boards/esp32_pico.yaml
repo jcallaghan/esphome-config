@@ -1,0 +1,12 @@
+---
+# ESP32 Pico Kit
+#
+# ESP32-PICO-KIT is an ESP32-based mini development board produced by Espressif. 
+# The core of this board is ESP32-PICO-D4 – a System-in-Package (SiP) module with complete Wi-Fi and Bluetooth functionalities.
+#
+# https://docs.platformio.org/en/latest/boards/espressif32/pico32.html
+#
+esphome:
+  <<: !include .esphome.yaml
+  platform: ESP32
+  board: pico32
