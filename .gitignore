@@ -10,6 +10,8 @@
 ~*
 .*
 
+!/boards/.esphome.yaml
+
 *.code-workspace
 
 **/.pioenvs/
