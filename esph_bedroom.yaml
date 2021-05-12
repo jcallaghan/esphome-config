@@ -1,4 +1,8 @@
+  
 ---
+# Bedroom
+#
+# Provides occupancy of anyone in bed.
 #
 # https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_bedroom.md
 #
@@ -51,5 +55,3 @@ binary_sensor:
     # https://esphome.io/components/binary_sensor/index.html#binary-sensor-filters
     filters:
       - delayed_off: 60s
-
-# //TODO #22 consider moving template sensor from Home Assistant into this config including the delay_off.
