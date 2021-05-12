@@ -1,9 +1,13 @@
 ---
+# Test M5 Stick C
+#
+# Test M5 Stick C which I'm building out a config for.
+# Further work is required on the device config to get the screen working for example.
 #
 substitutions:
   system_name: test_m5_stick
   friendly_name: Test M5 Stick C
-  device_description: ""
+  device_description: "Test M5 Stick C."
 
 packages:
   device: !include devices/m5_stick_c.yaml
