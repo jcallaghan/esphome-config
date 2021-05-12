@@ -1,4 +1,8 @@
 ---
+# Hot Tub Energy
+#
+# This Sonoff Pow R2 relay controls the power to my Hot Tub .
+# I mainly use it to track energy usage.
 #
 substitutions:
   system_name: hot_tub_energy
