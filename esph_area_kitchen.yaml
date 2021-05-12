@@ -10,7 +10,7 @@
 substitutions:
   system_name: area_kitchen
   friendly_name: Kitchen
-  device_description: "IR integration with hob/stove, used for area specific sensors and to obtain data from local Xiaomi temperature sensors via BLE."
+  device_description: "IR integration with hob/stove, used for area specific sensors and to obtain data from local Xiaomi temperature sensors via BLE. readme via https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_area_kitchen.md"
 
 packages:
   device: !include devices/esp32_pico.yaml
