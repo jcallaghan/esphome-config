@@ -12,8 +12,6 @@
 
 *.code-workspace
 
-/esph_*/
-
 **/.pioenvs/
 **/.piolibdeps/
 **/lib/
