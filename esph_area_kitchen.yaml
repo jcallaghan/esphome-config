@@ -1,10 +1,16 @@
 ---
+# Kitchen
+#
+# Used to obtain Xiaomi temperature sensor data via BLE.
+# IR receiver to enable a IR button built into my hob/stove to function. 
+# The button should operate an extractor fan above however ours is not compatiable.
+#
+# https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_area_kitchen.md
 #
 substitutions:
   system_name: area_kitchen
   friendly_name: Kitchen
-  device_description: "Used for area specific sensors and to obtain data from local Xiaomi temperature sensors via BLE."
-#IR receiver to enable a IR button built into my hob/stove to function. The button should operate an extractor fan above however ours is not compatiable.
+  device_description: "IR integration with hob/stove, used for area specific sensors and to obtain data from local Xiaomi temperature sensors via BLE."
 
 packages:
   device: !include devices/esp32_pico.yaml
@@ -16,35 +22,35 @@ esp32_ble_tracker:
 binary_sensor:
 
   - platform: remote_receiver
-    name: "ESPH ${friendly_name} Off Command"
+    name: "ESPH ${friendly_name} Hob Off Command"
     raw:
       code: [-646, 1467, -690, 733, -706, 747, -674, 2236, -674, 751, -677, 1489, -650, 1518, -651, 770, -643]
     filters:
       - delayed_off: 5s
       
   - platform: remote_receiver
-    name: "ESPH ${friendly_name} Light Command"
+    name: "ESPH ${friendly_name} Hob Light Command"
     raw:
       code: [-669, 1466, -691, 733, -1375, 760, -676, 1466, -701, 749, -1346, 2986, -675, 726, -698, 719, -1381]
     filters:
       - delayed_off: 5s
 
   - platform: remote_receiver
-    name: "ESPH ${friendly_name} Fan 1 Command"
+    name: "ESPH ${friendly_name} Hob Fan 1 Command"
     raw:
       code: [-1321, 1496, -673, 1463, -2063, 1503, -676, 1489, -649, 752, -674, 1517, -676, 2231, -650]
     filters:
       - delayed_off: 5s
 
   - platform: remote_receiver
-    name: "ESPH ${friendly_name} Fan 2 Command"
+    name: "ESPH ${friendly_name} Hob Fan 2 Command"
     raw:
       code: [-1319, 1469, -728, 2948, -650, 2258, -3402, 2213, -2060]
     filters:
       - delayed_off: 5s
 
   - platform: remote_receiver
-    name: "ESPH ${friendly_name} Fan 3 Command"
+    name: "ESPH ${friendly_name} Hob Fan 3 Command"
     raw:
       code: [-623, 2224, -2744, 2954, -2060, 730, -707, 2229, -2034]
     filters:
@@ -92,11 +98,4 @@ remote_receiver:
     pin:
       number: GPIO13
       inverted: true
-    dump: raw 
-
-# # https://esphome.io/components/remote_transmitter.html
-# remote_transmitter:
-
-#   - id: external_ir_transmitter
-#     pin: GPIO12
-#     carrier_duty_percent: 50%
+    dump: all 
