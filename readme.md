@@ -51,7 +51,7 @@ binary_sensor:
 ```
 This results in all the entities from this node are returned when searching for an entity in Home Assistant with a text search of ```esph_bedroom*```. This also means I don't need to rename the entity or change the display name of each entity when the devices is added to Home Assistant.
 
-## Onboarding and Build process
+### Onboarding and Build process
 1. When I want to run ESPHome on a new device I first determine the most appropriate device to use. 
 1. I then create a new config where I define the components I want to use for the project.
 1. Once I have established a config I will compile if via the ESPHome Dashboard and download it.
