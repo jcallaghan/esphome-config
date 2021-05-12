@@ -1,0 +1,7 @@
+---
+# Status
+#
+# https://esphome.io/components/text_sensor/version.html
+#
+text_sensor:
+  - <<: !include ../text_sensors/version.yaml
