@@ -10,6 +10,7 @@
 ~*
 .*
 
+/custom_components/*
 !/boards/.esphome.yaml
 
 *.code-workspace
