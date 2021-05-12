@@ -1,11 +1,15 @@
+  
 ---
+# Ground Water
+#
+# This monitors the level of the ground water in my basement.
 #
 # https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_ground_water.md
 #
 substitutions:
   system_name: ground_water
   friendly_name: Ground Water
-  device_description: "Ultrasonic distance sensor fitted inside a tube with a table tennis ball measuring the depth of the water in our basement. /n Readme via https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_ground_water.md"
+  device_description: "Ultrasonic distance sensor fitted inside a tube with a table tennis ball measuring the depth of the water in our basement. Readme via https://github.com/jcallaghan/esphome-config/blob/main/.readme/esph_ground_water.md"
 
 packages:
   device: !include devices/esp32_pico.yaml
