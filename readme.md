@@ -7,10 +7,11 @@ In the [Wiki](https://github.com/jcallaghan/esphome-config/wiki) you will find l
 
 | Config | Description |
 |--------|-------------|
+| [esph_area_kitchen.yaml](/esph_area_kitchen.yaml)| IR integration with hob/stove, used for area specific sensors and to obtain data from local Xiaomi temperature sensors via BLE.|
 | [esph_bedroom.yaml](/esph_bedroom.yaml) | This ESP32 board connects via two separate GPO pins two [pressure pads](https://www.amazon.co.uk/gp/product/B0045U4MNC) that are placed under my mattress for presence detection. This is incredibly useful to trigger automations at bed time or in the morning when getting up. |
 | [esph_ground_water.yaml](/esph_ground_water) | ESP32 with an ultrasonic distance sensor fitted inside a plastic tube. The tube is fixed to my basement wall and monitors the depth of water down there. I place a table-tennis ball inside the plastic tube which floats as water rises. This provides us with a constant view of how bad the flooding is in the local area.|
 | [esph_hot_tub_energy.yaml](/esph_hot_tub_energy.yaml) | I use a Sonoff POWR2 to monitor the energy my hot tub uses while also providing a remote power switch to turn the hot tub power on and off.|
-| [esph_upstairs.yaml](/esph_upstairs.yaml) | I use this ESP32 board to read bluetooth data such as the temperature from a Xiaomi LYWSD02 clock. |
+| [esph_area_upstairs.yaml](/esph_area_upstairs.yaml) | I use this ESP32 board to read bluetooth data such as the temperature from a Xiaomi LYWSD02 clock. |
 
 ## Patterns & Practices
 
